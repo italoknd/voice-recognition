@@ -4,36 +4,36 @@ import { ref, onMounted } from 'vue'
 const transcript = ref('')
 const is_recording = ref(false)
 
-const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition
+const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition //browsers methods that recognizes human speechs
 const sr = new Recognition()
 
 onMounted(() => {
   sr.continuous = true
   //this command tell us that the component will be listening us till we stop it
+  //it's like a watcher, will be there waiting for some voice to come on
   sr.interimResults = true
-  //this one will take the results of the speech
+  //this one will take the results of the speech (but this is not the final result)
 
-  sr.onStart = () => {
+  //starts the recording
+  sr.onstart = () => {
     console.log('VR started')
     is_recording.value = true
   }
 
-  //on start recording
-  sr.onStop = () => {
+  //stops the recording
+  sr.onend = () => {
     console.log('VR stopped')
     is_recording.value = false
   }
 
-  sr.onResult = event => {
-    console.log(event)
+  sr.onresult = event => {
     const text = Array.from(event.results)
       .map(res => res[0])
-      .map(res => {
-        res.transcript
-      })
+      .map(res => res.transcript)
       .join('')
 
     transcript.value = text
+    console.log(transcript);
   }
 })
 
@@ -46,8 +46,8 @@ const toggle_mic = () => {
 
 <template>
   <div class="app">
-    <button :class="`mic`" @click="toggle_mic()">Record</button>
-    <div class="transcript" v-text="transcript"></div>
+    <button @click="toggle_mic()">Record</button>
+    <div v-text="transcript"></div>
   </div>
 </template>
 
