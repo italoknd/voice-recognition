@@ -10,8 +10,8 @@ import Microphone from "./icons/Microphone.vue";
 
 <style scoped>
 .mic-container {
-  min-height: 5.75vh;
-  min-width: 2.75vw;
+  min-height: 6vh;
+  min-width: 3vw;
 
   display: flex;
   align-items: center;
@@ -23,6 +23,7 @@ import Microphone from "./icons/Microphone.vue";
   background: dodgerblue;
   cursor: pointer;
   transition: 0.5s;
+  padding: 0.3em;
 }
 
 .mic-container:hover {
@@ -31,6 +32,8 @@ import Microphone from "./icons/Microphone.vue";
 }
 
 .mic-icon {
+  min-width: 1.5em;
+  min-height: 1.5em;
   color: white;
 }
 </style>
