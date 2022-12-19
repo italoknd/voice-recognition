@@ -1,5 +1,5 @@
 <template>
-  <div class="mic-container">
+  <div class="mic-container d-flex align-center justify-content-center">
     <Microphone class="mic-icon" />
   </div>
 </template>
@@ -13,10 +13,6 @@ import Microphone from "./icons/Microphone.vue";
   min-height: 6vh;
   min-width: 3vw;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   border-radius: 50%;
   border: 2px solid white;
 
@@ -27,7 +23,7 @@ import Microphone from "./icons/Microphone.vue";
 }
 
 .mic-container:hover {
-  background: rgb(27, 125, 223);
+  background: rgb(29, 133, 236);
   border: 2px solid rgb(220, 220, 220);
 }
 
@@ -35,5 +31,9 @@ import Microphone from "./icons/Microphone.vue";
   min-width: 1.5em;
   min-height: 1.5em;
   color: white;
+}
+
+.recording {
+  background: rgb(223, 77, 77);
 }
 </style>

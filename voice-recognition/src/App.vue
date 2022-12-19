@@ -50,8 +50,10 @@ const toggle_mic = () => {
 
 <template>
   <div class="app">
-    <div v-text="transcript"></div>
-    <Mic @click="toggle_mic()" />
+    <div class="d-flex justify-content-center">
+      <Mic class="m-5" @click="toggle_mic()" />
+      <p class="text-box mt-2" v-text="transcript"></p>
+    </div>
   </div>
 </template>
 
@@ -64,8 +66,13 @@ const toggle_mic = () => {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+#app {
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
 body {
-  background: dodgerblue;
+  background-image: linear-gradient(90deg, #3960ec, rgb(0, 153, 255));
   color: white;
 }
 </style>
