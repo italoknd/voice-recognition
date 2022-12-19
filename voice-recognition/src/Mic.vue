@@ -1,18 +1,17 @@
 <template>
   <div class="mic-container">
-    <Microphone class="mic-icon"/>
+    <Microphone class="mic-icon" />
   </div>
 </template>
 
 <script setup>
-import Microphone from './icons/Microphone.vue'
-
+import Microphone from "./icons/Microphone.vue";
 </script>
 
 <style scoped>
-.mic-container{
-  height: 5.75vh;
-  width: 2.75vw;
+.mic-container {
+  min-height: 5.75vh;
+  min-width: 2.75vw;
 
   display: flex;
   align-items: center;
@@ -23,11 +22,15 @@ import Microphone from './icons/Microphone.vue'
 
   background: dodgerblue;
   cursor: pointer;
-  transition: .5s;
+  transition: 0.5s;
 }
 
-.mic-container:hover{
+.mic-container:hover {
   background: rgb(27, 125, 223);
   border: 2px solid rgb(220, 220, 220);
+}
+
+.mic-icon {
+  color: white;
 }
 </style>
