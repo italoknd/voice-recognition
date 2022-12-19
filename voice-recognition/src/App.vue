@@ -1,8 +1,11 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
+import Mic from './Mic.vue'
 
 const transcript = ref('')
 const is_recording = ref(false)
+const clean_command = ref(['limpar tudo', 'limpar texto', 'apagar texto'])
+const has_to_clean = ref(false)
 
 const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition //browsers methods that recognizes human speechs
 const sr = new Recognition()
@@ -16,13 +19,11 @@ onMounted(() => {
 
   //starts the recording
   sr.onstart = () => {
-    console.log('VR started')
     is_recording.value = true
   }
 
   //stops the recording
   sr.onend = () => {
-    console.log('VR stopped')
     is_recording.value = false
   }
 
@@ -33,12 +34,16 @@ onMounted(() => {
       .join('')
 
     transcript.value = text
-    console.log(transcript);
   }
 })
 
+watch(transcript, () =>
+  clean_command.value.map(item =>
+    transcript.value.includes(item) ? (transcript.value = '') : ''
+  )
+)
+
 const toggle_mic = () => {
-  console.log('entered here')
   if (is_recording.value) sr.stop()
   else sr.start()
 }
@@ -46,8 +51,8 @@ const toggle_mic = () => {
 
 <template>
   <div class="app">
-    <button @click="toggle_mic()">Record</button>
     <div v-text="transcript"></div>
+    <Mic @click="toggle_mic()" />
   </div>
 </template>
 
