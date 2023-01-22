@@ -27,7 +27,6 @@ onMounted(() => {
   }
 
   sr.onresult = event => {
-    console.log(event);
     const text = Array.from(event.results)
       .map(res => res[0])
       .map(res => res.transcript)
