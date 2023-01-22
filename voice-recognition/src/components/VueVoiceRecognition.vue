@@ -1,10 +1,12 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, defineEmits } from 'vue'
 import Microphone from '../icons/Microphone.vue'
 
 const transcript = ref('')
 const is_recording = ref(false)
 // const clean_command = ref(["limpar tudo", "limpar texto", "apagar texto"]);
+
+const emit = defineEmits(['getTranscript'])
 
 const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition //browsers methods that recognizes human speechs
 const sr = new Recognition()
@@ -33,6 +35,7 @@ onMounted(() => {
       .join('')
 
     transcript.value = text
+    emit('getTranscript', transcript.value)
   }
 })
 
