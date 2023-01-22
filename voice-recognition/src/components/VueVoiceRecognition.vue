@@ -49,10 +49,32 @@ const toggle_mic = () => {
 </script>
 
 <template>
-  <div class="app">
-    <div class="d-flex justify-content-center">
-      <Mic class="m-5" @click="toggle_mic()" />
-      <p class="text-box mt-2" v-text="transcript"></p>
-    </div>
+  <div>
+    <Mic class="mic-container" @click="toggle_mic()" />
+    <p v-text="transcript"></p>
   </div>
 </template>
+
+<style scoped>
+.mic-container {
+  min-height: 6vh;
+  min-width: 3vw;
+
+  border-radius: 50%;
+  border: 2px solid white;
+
+  background: dodgerblue;
+  cursor: pointer;
+  transition: 0.5s;
+  padding: 0.3em;
+}
+
+.mic-container:hover {
+  background: rgb(29, 133, 236);
+  border: 2px solid rgb(220, 220, 220);
+}
+
+.recording {
+  background: rgb(223, 77, 77);
+}
+</style>
