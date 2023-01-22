@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
-import Mic from '../icons/Microphone.vue'
+import Microphone from '../icons/Microphone.vue'
 
 const transcript = ref('')
 const is_recording = ref(false)
@@ -49,16 +49,16 @@ const toggle_mic = () => {
 </script>
 
 <template>
-  <div>
-    <Mic class="mic-container" @click="toggle_mic()" />
-    <p v-text="transcript"></p>
+  <div class="mic-container">
+    <Microphone class="mic-icon" @click="toggle_mic()" />
   </div>
+  <p v-text="transcript"></p>
 </template>
 
 <style scoped>
 .mic-container {
-  min-height: 6vh;
-  min-width: 3vw;
+  height: 4.5vh;
+  width: 2.5vw;
 
   border-radius: 50%;
   border: 2px solid white;
@@ -72,6 +72,14 @@ const toggle_mic = () => {
 .mic-container:hover {
   background: rgb(29, 133, 236);
   border: 2px solid rgb(220, 220, 220);
+}
+
+.mic-icon {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 100%;
+  height: 100%;
 }
 
 .recording {
