@@ -10,6 +10,6 @@ const getTranscript = val => {
 </script>
 
 <template>
-  <VueVoiceRecognition @get-transcript="getTranscript" />
-  <textarea v-html="transcript" class="w-50"></textarea>
+  <VueVoiceRecognition @get-transcript="getTranscript"/>
+  <textarea v-html="transcript" class="w-50" ></textarea>
 </template>

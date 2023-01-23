@@ -2,11 +2,13 @@
 import { ref, onMounted, watch, defineEmits } from 'vue'
 import Microphone from '../icons/Microphone.vue'
 
+const emit = defineEmits(['getTranscript'])
 const transcript = ref('')
 const is_recording = ref(false)
-// const clean_command = ref(["limpar tudo", "limpar texto", "apagar texto"]);
 
-const emit = defineEmits(['getTranscript'])
+//commmands
+const stop_recording = ref(false)
+// const clean_command = ref(["limpar tudo", "limpar texto", "apagar texto"]);
 
 const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition //browsers methods that recognizes human speechs
 const sr = new Recognition()
@@ -45,6 +47,12 @@ onMounted(() => {
 //   )
 // );
 
+watch(transcript, () => {
+  if(transcript.value.match('stop recording') || transcript.value.match('finalizar gravação')){
+    toggle_mic()
+  }
+})
+
 const toggle_mic = () => {
   if (is_recording.value) sr.stop()
   else sr.start()
@@ -52,15 +60,16 @@ const toggle_mic = () => {
 </script>
 
 <template>
-  <div class="mic-container">
-    <Microphone class="mic-icon" @click="toggle_mic()" />
+  <div>
+    <div class="mic-container mt-2 mx-1">
+      <Microphone class="mic-icon" @click="toggle_mic()" />
+    </div>
   </div>
-  <p v-text="transcript"></p>
 </template>
 
 <style scoped>
 .mic-container {
-  height: 4.5vh;
+  height: 4vh;
   width: 2.5vw;
 
   border-radius: 50%;
