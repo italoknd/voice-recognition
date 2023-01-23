@@ -1,11 +1,21 @@
 {
-  "name": "voice-recognition",
-  "private": true,
+  "name": "vue-voice-recognition",
   "version": "0.0.2",
+  "main": "./dist/voice-recognition.umd.js",
+  "module": "./dist/voice-recognition.es.js",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/voice-recognition.es.js",
+      "require": "./dist/voice-recognition.umd.js"
+    }
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "rollup -c",
     "preview": "vite preview"
   },
   "dependencies": {
