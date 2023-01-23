@@ -1,7 +1,45 @@
-# Vue 3 + Vite
+#Vue Voice Recognition
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-## Recommended IDE Setup
+With this component you can simply start talking while the component sends you your voice transcripted to you use wherever you want! (Simple like that)
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+##Installation:
+
+```js
+yarn add vue-voice-recognition
+```
+
+or
+
+```js
+npm i vue-voice-recognition
+```
+* both commands will download the latest version of the module
+
+##Import:
+```js
+//first of all, import the component on your main.js
+import VueVoiceRecognition from 'vue-voice-recognition'
+
+//then expose it globally to be available on your project
+createApp(App)
+  .mount("#app")
+  .use(VueVoiceRecognition); // (you only this part)
+```
+
+##Use:
+
+###Basic usage:
+```js
+<VueVoiceRecognition @getTranscript="callback"/>
+```
+
+###With all it's power:
+```js
+//nothing yet
+```
+
+##Props:
+|Option|Type:|Default:|Description:|
+:----: |:--: | :----: | :--------: |
+stopRecording| String| null | Here you can pass a word or phrase that when it's detected by the component will end the voice capturing immediately. (you can keep this as null if you want)

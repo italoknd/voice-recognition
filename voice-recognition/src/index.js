@@ -1,4 +1,4 @@
-const VueVoiceRecognition = require("./components/VueVoiceRecognition");
+import VueVoiceRecognition from "./components/VueVoiceRecognition.vue";
 
 module.exports = {
   install: (app, options) => {

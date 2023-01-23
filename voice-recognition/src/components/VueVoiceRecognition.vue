@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, watch, defineEmits } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import Microphone from '../icons/Microphone.vue'
 
 const emit = defineEmits(['getTranscript'])
