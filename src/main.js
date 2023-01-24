@@ -3,4 +3,7 @@ import "./style.css";
 import App from "./App.vue";
 import VueVoiceRecognition from "./components/VueVoiceRecognition.vue";
 
-createApp(App).mount("#app").use(VueVoiceRecognition);
+const app = createApp(App)
+
+app.use(VueVoiceRecognition);
+app.mount("#app")
