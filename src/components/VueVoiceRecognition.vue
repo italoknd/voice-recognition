@@ -1,45 +1,45 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue'
-import Microphone from '../icons/Microphone.vue'
+import { ref, onMounted, watch } from "vue";
+import Microphone from "../icons/Microphone.vue";
 
-const emit = defineEmits(['getTranscript'])
-const transcript = ref('')
-const is_recording = ref(false)
+const emit = defineEmits(["getTranscript"]);
+const transcript = ref("");
+const is_recording = ref(false);
 
 //commmands
-const stop_recording = ref(false)
+const stop_recording = ref(false);
 // const clean_command = ref(["limpar tudo", "limpar texto", "apagar texto"]);
 
-const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition //browsers methods that recognizes human speechs
-const sr = new Recognition()
+const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition; //browsers methods that recognizes human speechs
+const sr = new Recognition();
 
 onMounted(() => {
-  sr.continuous = true
+  sr.continuous = true;
   //this command tell us that the component will be listening us till we stop it
   //it's like a watcher, will be there waiting for some voice to come on
-  sr.interimResults = true
+  sr.interimResults = true;
   //this one will take the results of the speech (but this is not the final result)
 
   //starts the recording
   sr.onstart = () => {
-    is_recording.value = true
-  }
+    is_recording.value = true;
+  };
 
   //stops the recording
   sr.onend = () => {
-    is_recording.value = false
-  }
+    is_recording.value = false;
+  };
 
   sr.onresult = event => {
     const text = Array.from(event.results)
       .map(res => res[0])
       .map(res => res.transcript)
-      .join('')
+      .join("");
 
-    transcript.value = text
-    emit('getTranscript', transcript.value)
-  }
-})
+    transcript.value = text;
+    emit("getTranscript", transcript.value);
+  };
+});
 
 // watch(transcript, () =>
 //   clean_command.value.map(item =>
@@ -48,22 +48,23 @@ onMounted(() => {
 // );
 
 watch(transcript, () => {
-  if(transcript.value.match('stop recording') || transcript.value.match('finalizar gravação')){
-    toggle_mic()
+  if (
+    transcript.value.match("stop recording") ||
+    transcript.value.match("finalizar gravação")
+  ) {
+    toggle_mic();
   }
-})
+});
 
 const toggle_mic = () => {
-  if (is_recording.value) sr.stop()
-  else sr.start()
-}
+  if (is_recording.value) sr.stop();
+  else sr.start();
+};
 </script>
 
 <template>
-  <div>
-    <div class="mic-container mt-2 mx-1">
-      <Microphone class="mic-icon" @click="toggle_mic()" />
-    </div>
+  <div class="mic-container mt-2 mx-1">
+    <Microphone class="mic-icon" @click="toggle_mic()" />
   </div>
 </template>
 

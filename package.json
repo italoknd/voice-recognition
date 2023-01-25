@@ -1,16 +1,14 @@
 {
   "name": "vue-voice-recognition",
   "version": "0.1.3",
-  "main": "./dist/vue-voice-recognition.umd.js",
-  "module": "./dist/vue-voice-recognition.es.js",
-  "files": [
-    "dist"
-  ],
+  "main": "./dist/VueVoiceRecognition.umd.js",
+  "module": "./dist/VueVoiceRecognition.es.js",
   "exports": {
     ".": {
-      "import": "./dist/vue-voice-recognition.es.js",
-      "require": "./dist/vue-voice-recognition.umd.js"
-    }
+      "import": "./dist/VueVoiceRecognition.es.js",
+      "require": "./dist/VueVoiceRecognition.umd.js"
+    },
+    "./dist/style.css": "./dist/style.css"
   },
   "type": "module",
   "scripts": {
@@ -18,6 +16,9 @@
     "build": "vite build",
     "preview": "vite preview"
   },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "vue": "^3.2.41"
   },
